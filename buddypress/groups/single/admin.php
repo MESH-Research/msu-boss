@@ -84,8 +84,8 @@
 		</label>
 	</div>
 
-	<hr /> 
-	 
+	<hr />
+
 	<h4><?php _e( 'Group Invitations', 'boss' ); ?></h4>
 
 	<p><?php _e( 'Which members of this group are allowed to invite others?', 'boss' ); ?></p>
@@ -107,7 +107,36 @@
 		</label>
  	</div>
 
-	<hr /> 
+ 	<hr />
+
+ 	<?php if ( bp_docs_is_docs_enabled_for_group() ) : ?>
+		<h4><?php _e( 'Docs View', 'boss' ); ?></h4>
+
+		<p><?php _e( 'How should docs be ordered for members by default?', 'boss' ); ?></p>
+
+		<div class="radio">
+			<label>
+				<input type="radio" name="group-docs-orderby" value="title"<?php hc_custom_bp_group_show_orderby_default_setting( 'title' ); ?> />
+				<strong><?php _e( 'Sort by Title', 'boss' ); ?></strong>
+			</label>
+
+			<label>
+				<input type="radio" name="group-docs-orderby" value="author"<?php hc_custom_bp_group_show_orderby_default_setting( 'author' ); ?> />
+				<strong><?php _e( 'Sort by Author', 'boss' ); ?></strong>
+			</label>
+
+			<label>
+				<input type="radio" name="group-docs-orderby" value="created"<?php hc_custom_bp_group_show_orderby_default_setting( 'created' ); ?> />
+				<strong><?php _e( 'Sort by Creation Date', 'boss' ); ?></strong>
+			</label>
+			<label>
+				<input type="radio" name="group-docs-orderby" value="modified"<?php hc_custom_bp_group_show_orderby_default_setting( 'modified' ); ?> />
+				<strong><?php _e( 'Sort by Last Edited', 'boss' ); ?></strong>
+			</label>
+	 	</div>
+ <?php endif; ?>
+
+	<hr />
 
 	<?php do_action( 'bp_after_group_settings_admin' ); ?>
 
@@ -211,58 +240,58 @@
         </div>
 
 
-     
+
 <?php if ( bp_has_members( '&include='. bp_group_admin_ids() ) ) : ?>
 
 	<div class="bp-widget">
 		<h4><?php _e( 'Administrators', 'boss' ); ?></h4>
 
-		
+
 		<ul id="admins-list" class="item-list single-line">
-			
+
 			<?php while ( bp_members() ) : bp_the_member(); ?>
 			<li>
 				<?php echo bp_core_fetch_avatar( array( 'item_id' => bp_get_member_user_id(), 'type' => 'thumb', 'width' => 30, 'height' => 30, 'alt' => sprintf( __( 'Profile picture of %s', 'boss' ), bp_get_member_name() ) ) ); ?>
 				<h5>
 					<a href="<?php bp_member_permalink(); ?>"> <?php bp_member_name(); ?></a>
-				</h5>		
+				</h5>
                 <?php if ( count( bp_group_admin_ids( false, 'array' ) ) > 1 ) : ?>
                 <span class="small">
                     <a class="button confirm admin-demote-to-member" href="<?php bp_group_member_demote_link( bp_get_member_user_id() ); ?>"><?php _e( 'Demote to Member', 'boss' ); ?></a>
-                </span>			
+                </span>
                 <?php endif; ?>
 			</li>
 			<?php endwhile; ?>
-		
+
 		</ul>
-	</div>	
+	</div>
 		<?php endif; ?>
 
-	
-	
+
+
 	<?php if ( bp_group_has_moderators() ) : ?>
 		<div class="bp-widget">
-			<h4><?php _e( 'Moderators', 'boss' ); ?></h4>		
-			
+			<h4><?php _e( 'Moderators', 'boss' ); ?></h4>
+
 			<?php if ( bp_has_members( '&include=' . bp_group_mod_ids() ) ) : ?>
 				<ul id="mods-list" class="item-list single-line">
-				
-					<?php while ( bp_members() ) : bp_the_member(); ?>					
+
+					<?php while ( bp_members() ) : bp_the_member(); ?>
 					<li>
 						<?php echo bp_core_fetch_avatar( array( 'item_id' => bp_get_member_user_id(), 'type' => 'thumb', 'width' => 30, 'height' => 30, 'alt' => sprintf( __( 'Profile picture of %s', 'boss' ), bp_get_member_name() ) ) ); ?>
 						<h5>
 							<a href="<?php bp_member_permalink(); ?>"> <?php bp_member_name(); ?></a>
-							
+
 						</h5>
                         <span class="small">
                             <a href="<?php bp_group_member_promote_admin_link( array( 'user_id' => bp_get_member_user_id() ) ); ?>" class="button confirm mod-promote-to-admin" title="<?php _e( 'Promote to Admin', 'boss' ); ?>"><?php _e( 'Promote to Admin', 'boss' ); ?></a>
                             <a class="button confirm mod-demote-to-member" href="<?php bp_group_member_demote_link( bp_get_member_user_id() ); ?>"><?php _e( 'Demote to Member', 'boss' ); ?></a>
-                        </span>				
-					</li>	
-					<?php endwhile; ?>			
-				
+                        </span>
+					</li>
+					<?php endwhile; ?>
+
 				</ul>
-			
+
 			<?php endif; ?>
 		</div>
 	<?php endif ?>
@@ -284,7 +313,7 @@
 
 							<?php if ( bp_get_group_member_is_banned() ) _e( '(banned)', 'boss' ); ?>
 
-							
+
 						</h5>
                         <a class="show-options" href="#">Show Options</a>
                         <span class="small inactive">
@@ -326,7 +355,7 @@
 				</div>
 
 			<?php endif; ?>
-                   
+
 		<?php else: ?>
 
 			<div id="message" class="info">

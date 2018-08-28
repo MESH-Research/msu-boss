@@ -63,6 +63,8 @@
       $('form#settings-form').areYouSure();
     }
 
+    $(".no-docs").hide();
+
     $("label[for='blog_public_on'] strong").text('Allow search engines to index this site, and allow the site to appear in public listings around this network.');
 
     $("label[for='blog_public_off'] strong").text("Discourage search engines from indexing this site.");
@@ -182,8 +184,5 @@
       fixCoverImageDimensions();
     }
   });
-
-
-
 
 })(jQuery);

@@ -259,7 +259,7 @@ li.bbp-topic-title a.bbp-topic-permalink {
 // docs overrides
 .site .doc-title, .site .directory-title:not(.empty) {
   background-color: $menu-panel-background-color;
-  color: $menu-panel-color;
+  color: #006ccc;
 }
 .site .doc-title .breadcrumb-current, h2.directory-title .breadcrumb-current {
   border-color: $menu-panel-color;
@@ -438,4 +438,24 @@ body:not('.role-admin') .send-invitations-by-email-wrap {
     margin: 10px auto;
     display: inline-block;
   }
+}
+
+.doctable .title-cell>a {
+    color: #006ccc;
+}
+
+.site #buddypress table.doctable tr th {
+    color: #006ccc;
+}
+
+.directory-title a {
+    color: #006ccc;
+}
+
+.site #buddypress #doc-attachments-ul li {
+  display:block;
+}
+
+.site #buddypress #doc-attachments-ul li:nth-child(even) {
+  background: #ececec;
 }

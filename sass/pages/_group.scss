@@ -459,3 +459,19 @@ body:not('.role-admin') .send-invitations-by-email-wrap {
 .site #buddypress #doc-attachments-ul li:nth-child(even) {
   background: #ececec;
 }
+
+.toggle-content {
+  overflow: unset !important;
+}
+
+.title-cell {
+    min-width: 250px !important;
+}
+
+.genericon-document {
+  display:none !important;
+}
+
+#bp-docs-all-docs li:nth-child(1) {
+  display:none;
+}

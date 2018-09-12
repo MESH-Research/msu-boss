@@ -54,7 +54,67 @@
       } );
   }
 
+  $doctable = $( 'table.doctable' );
+
   $(document).ready(function(){
+
+
+    /*
+     * Expand folders to show contents on click.
+     * Contents are fetched via an AJAX request.
+     */
+    $( '.doctable' ).on( 'click', '.orderby', function( e ) {
+      e.preventDefault();
+
+
+      var classNames = this.className.split(/\s+/);
+
+      var orderby = classNames[1];
+      var order = classNames[3];
+
+      switch(order) {
+        case 'asc':
+           order = 'DESC';
+           break;
+        case 'desc':
+           order = 'ASC';
+           break;
+          }
+
+      if ( 'modified' == orderby || 'date' == orderby ) {
+        $order = 'DESC';
+      } else {
+        $order = 'ASC';
+      }
+
+      var $folder_id = $( '.toggle-folder' ).data( 'folder-id' );
+
+      var container = $( this ).closest( '.toggleable' ).find( '.toggle-content.folder-loop' ).first();
+
+      // Make the AJAX request and populate the list.
+
+      $.ajax( {
+        url: ajaxurl,
+        type: 'GET',
+        data: {
+          folder: $folder_id,
+          group_id: $( '#directory-group-id' ).val(),
+          user_id: $( '#directory-user-id' ).val(),
+          order: order,
+          orderby: orderby,
+          action: 'bp_docs_get_folder_content',
+        },
+        success: function( response ) {
+          $( container ).html( '' );
+          $( container ).html( response );
+          $( '.folder-row-name, .folder-meta-info-statement' ).attr( 'colspan', 10 );
+        }
+
+      } );
+
+
+    } );
+
 
     var searchQuery = getQueryVariable('s');
     var searchInput = $('#members_search');

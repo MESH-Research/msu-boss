@@ -87,7 +87,7 @@
         $order = 'ASC';
       }
 
-      var $folder_id = $( '.toggle-folder' ).data( 'folder-id' );
+      var folder_id = $( this ).closest('.toggleable').find('.toggle-folder').first().data('folder-id');
 
       var container = $( this ).closest( '.toggleable' ).find( '.toggle-content.folder-loop' ).first();
 
@@ -97,7 +97,7 @@
         url: ajaxurl,
         type: 'GET',
         data: {
-          folder: $folder_id,
+          folder: folder_id,
           group_id: $( '#directory-group-id' ).val(),
           user_id: $( '#directory-user-id' ).val(),
           order: order,

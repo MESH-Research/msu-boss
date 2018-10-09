@@ -1,5 +1,4 @@
 <table class="doctable">
-<?php if ( bp_docs_has_docs() ) : ?>
 <thead>
 		<tr valign="bottom">
 			<?php if ( bp_docs_enable_attachments() ) : ?>
@@ -27,7 +26,6 @@
 			<?php do_action( 'bp_docs_loop_additional_th' ) ?>
 		</tr>
 </thead>
-<?php endif; ?>
 <tbody>
 <?php if ( bp_docs_enable_folders_for_current_context() ) : ?>
 	<?php if ( bp_docs_include_folders_in_loop_view() ) : ?>

@@ -58,6 +58,15 @@
 
   $(document).ready(function(){
 
+    $('body').on('change','select#new-folder-type',function(){
+        $select_text = $('select#new-folder-type option:selected').text();
+        $('.folder-type-selector-div .buddyboss-select .buddyboss-select-inner span').text($select_text);
+    });
+
+    $('body').on('change','select#new-folder-parent',function(){
+        $select_text = $('select#new-folder-parent option:selected').text();
+        $( this ).closest('.buddyboss-select-inner').find('span').first().text($select_text);
+    });
 
     /*
      * Expand folders to show contents on click.

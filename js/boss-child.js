@@ -60,6 +60,7 @@
 
     $('body').on('change','select#new-folder-type',function(){
         $select_text = $('select#new-folder-type option:selected').text();
+        $('.folder-type-selector-div .buddyboss-select .buddyboss-select-inner span').show();
         $('.folder-type-selector-div .buddyboss-select .buddyboss-select-inner span').text($select_text);
     });
 

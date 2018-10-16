@@ -475,3 +475,13 @@ body:not('.role-admin') .send-invitations-by-email-wrap {
 #bp-docs-all-docs li:nth-child(1) {
   display:none;
 }
+
+#bbp-post-preview {
+  resize: both;
+  overflow: auto;
+  min-height: 15em;
+}
+
+#bbp-post-preview-wrapper label {
+  font-weight: bold;
+}

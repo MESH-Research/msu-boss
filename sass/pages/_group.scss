@@ -485,3 +485,7 @@ body:not('.role-admin') .send-invitations-by-email-wrap {
 #bbp-post-preview-wrapper label {
   font-weight: bold;
 }
+
+.events #wp-word-count {
+    display: none;
+}

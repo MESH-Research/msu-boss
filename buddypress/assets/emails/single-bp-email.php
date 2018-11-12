@@ -135,6 +135,38 @@ $settings = bp_email_get_appearance_settings();
 			<td>
 			<![endif]-->
 
+			<?php $blogname = bp_get_option( 'blogname' );
+
+				if ( 'Humanities Commons' !== $blogname ) :
+			?>
+
+			<!-- Email Header : BEGIN -->
+			<table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px; border-top: 7px solid <?php echo esc_attr( $settings['highlight_color'] ); ?>" bgcolor="<?php echo esc_attr( $settings['header_bg'] ); ?>" class="header_bg">
+				<tr>
+					<td style="text-align: center; padding: 15px 0; font-family: sans-serif; mso-height-rule: exactly; font-weight: bold; color: <?php echo esc_attr( $settings['header_text_color'] ); ?>; font-size: <?php echo esc_attr( $settings['header_text_size'] . 'px' ); ?>" class="header_text_color header_text_size">
+						<?php
+						/**
+						 * Fires before the display of the email template header.
+						 *
+						 * @since 2.5.0
+						 */
+						do_action( 'bp_before_email_header' );
+
+						echo $blogname;
+
+						/**
+						 * Fires after the display of the email template header.
+						 *
+						 * @since 2.5.0
+						 */
+						do_action( 'bp_after_email_header' );
+						?>
+					</td>
+				</tr>
+			</table>
+			<!-- Email Header : END -->
+
+		    <?php endif; ?>
 
 			<!-- Email Body : BEGIN -->
 			<table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="<?php echo esc_attr( $settings['body_bg'] ); ?>" width="100%" style="max-width: 600px; border-radius: 5px;" class="body_bg">
@@ -145,8 +177,19 @@ $settings = bp_email_get_appearance_settings();
 						<table cellspacing="0" cellpadding="0" border="0" width="100%">
 						  <tr>
 								<td style="padding: 20px; font-family: sans-serif; mso-height-rule: exactly; line-height: <?php echo esc_attr( floor( $settings['body_text_size'] * 1.618 ) . 'px' ) ?>; color: <?php echo esc_attr( $settings['body_text_color'] ); ?>; font-size: <?php echo esc_attr( $settings['body_text_size'] . 'px' ); ?>" class="body_text_color body_text_size">
-									{{{content}}}
+
+								<?php
+									if ( 'Humanities Commons' !== $blogname ) :
+								?>
+										<span style="font-weight: bold; font-size: <?php echo esc_attr( floor( $settings['body_text_size'] * 1.35 ) . 'px' ); ?>" class="welcome"><?php bp_email_the_salutation( $settings ); ?></span>
+										<hr color="<?php echo esc_attr( $settings['email_bg'] ); ?>"><br>
+
+								<?php endif; ?>
+
+										{{{content}}}
+
 								</td>
+
 						  </tr>
 						</table>
 					</td>

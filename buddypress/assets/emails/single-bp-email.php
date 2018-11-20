@@ -166,7 +166,10 @@ $settings = bp_email_get_appearance_settings();
 			</table>
 			<!-- Email Header : END -->
 
-		    <?php endif; ?>
+			<?php else: ?>
+			<span style="font-weight: bold; font-size: <?php echo esc_attr( floor( $settings['body_text_size'] * 1.35 ) . 'px' ); ?>" class="welcome"><?php echo bp_get_option( 'blogname' ); ?></span>
+
+		     <?php endif; ?>
 
 			<!-- Email Body : BEGIN -->
 			<table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="<?php echo esc_attr( $settings['body_bg'] ); ?>" width="100%" style="max-width: 600px; border-radius: 5px;" class="body_bg">

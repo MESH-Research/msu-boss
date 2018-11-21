@@ -167,7 +167,10 @@ $settings = bp_email_get_appearance_settings();
 			<!-- Email Header : END -->
 
 			<?php else: ?>
-			<span style="font-weight: bold; font-size: <?php echo esc_attr( floor( $settings['body_text_size'] * 1.35 ) . 'px' ); ?>" class="welcome"><?php echo bp_get_option( 'blogname' ); ?></span>
+
+				<span style="text-align:left;display:block;padding:10px;font-weight: bold;  color: <?php echo esc_attr( $settings['header_text_color'] ); ?>; font-size: <?php echo esc_attr( $settings['header_text_size'] . 'px' ); ?>" class="header_text_color header_text_size">
+					<img width="24" height="25" src="https://hcommons.org/app/uploads/sites/1000360/2016/10/hc_55.png" class="boss-logo small" alt="" valign="bottom"> <?php echo bp_get_option( 'blogname' ); ?>
+				</span>
 
 		     <?php endif; ?>
 
@@ -179,7 +182,7 @@ $settings = bp_email_get_appearance_settings();
 					<td>
 						<table cellspacing="0" cellpadding="0" border="0" width="100%">
 						  <tr>
-								<td style="padding: 20px; font-family: sans-serif; mso-height-rule: exactly; line-height: <?php echo esc_attr( floor( $settings['body_text_size'] * 1.618 ) . 'px' ) ?>; color: <?php echo esc_attr( $settings['body_text_color'] ); ?>; font-size: <?php echo esc_attr( $settings['body_text_size'] . 'px' ); ?>" class="body_text_color body_text_size">
+								<td style="padding: 10px; font-family: sans-serif; mso-height-rule: exactly; line-height: <?php echo esc_attr( floor( $settings['body_text_size'] * 1.618 ) . 'px' ) ?>; color: <?php echo esc_attr( $settings['body_text_color'] ); ?>; font-size: <?php echo esc_attr( $settings['body_text_size'] . 'px' ); ?>" class="body_text_color body_text_size">
 
 								<?php
 									if ( 'hc' !== $society_id ) :

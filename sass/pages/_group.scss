@@ -489,3 +489,13 @@ body:not('.role-admin') .send-invitations-by-email-wrap {
 .events #wp-word-count {
     display: none;
 }
+
+.badge-admin-only {
+    background-color: #eb5a46;
+    border-radius: 3px;
+    color: #fff;
+    padding: 2px;
+    margin-right: 3px;
+    font-size: 12px;
+}
+

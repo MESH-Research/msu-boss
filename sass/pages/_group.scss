@@ -499,3 +499,13 @@ body:not('.role-admin') .send-invitations-by-email-wrap {
     font-size: 12px;
 }
 
+table.group-nav-settings {
+    width: 50% !important;
+}
+
+.group-nav-settings .title {
+    margin: 14px 0 28px 0;
+    font-size: 18px !important;
+    color: #4dcadd;
+    font-weight: 400 !important;
+}

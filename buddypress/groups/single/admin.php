@@ -136,7 +136,17 @@
 	 	</div>
  <?php endif; ?>
 
-	<hr />
+<hr />
+
+	 	<?php hc_custom_get_options_nav(); ?>
+
+<br />
+
+<hr />
+
+        <?php hc_custom_choose_landing_page(); ?>
+<br />
+<br />
 
 	<?php do_action( 'bp_after_group_settings_admin' ); ?>
 

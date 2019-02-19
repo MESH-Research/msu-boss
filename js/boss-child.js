@@ -169,6 +169,10 @@
     $("label[for='blog-private-3']").html('<input id="blog-private-3" type="radio" name="blog_public" value="-3"><strong>Visible only to administrators of this site</strong>');
 
     if ($('.create-blog .entry-buddypress-content p a:eq(1)').length) {
+      console.log($('.entry-buddypress-content p a:eq(0)'));
+      $('.entry-buddypress-content p a:eq(0)').parent().prepend('Visit ');
+      $('.entry-buddypress-content p a:eq(1)')[0].previousSibling.remove();
+      $('.entry-buddypress-content p a:eq(1)').prepend('. ');
       $('.entry-buddypress-content p a:eq(1)')[0].nextSibling.remove();
     }
 

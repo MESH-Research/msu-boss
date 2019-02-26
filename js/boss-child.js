@@ -165,8 +165,8 @@
     $("label[for='blog_public_off']").prepend("<br/>");
     $("label[for='blog_public_off']").parent().append("<br/>");
     $("label[for='blog-private-1']").html('<input id="blog-private-1" type="radio" name="blog_public" value="-1"><strong>Visible only to registered users of ' + society() + '</strong>');
-    $("label[for='blog-private-2']").html('<input id="blog-private-2" type="radio" name="blog_public" value="-2"><strong>Visible only to registered users of this site</strong>');
-    $("label[for='blog-private-3']").html('<input id="blog-private-3" type="radio" name="blog_public" value="-3"><strong>Visible only to administrators of this site</strong>');
+    $("label[for='blog-private-2']").html('<input id="blog-private-2" type="radio" name="blog_public" value="-2"><strong>Visible only to registered users of your site</strong>');
+    $("label[for='blog-private-3']").html('<input id="blog-private-3" type="radio" name="blog_public" value="-3"><strong>Visible only to administrators of your site</strong>');
 
     if ($('.create-blog .entry-buddypress-content p a:eq(1)').length) {
       console.log($('.entry-buddypress-content p a:eq(0)'));

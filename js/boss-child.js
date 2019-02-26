@@ -171,9 +171,10 @@
     if ($('.create-blog .entry-buddypress-content p a:eq(1)').length) {
       console.log($('.entry-buddypress-content p a:eq(0)'));
       $('.entry-buddypress-content p a:eq(0)').parent().prepend('Visit ');
-      $('.entry-buddypress-content p a:eq(1)')[0].previousSibling.remove();
-      $('.entry-buddypress-content p a:eq(1)').prepend('. ');
+      $('.entry-buddypress-content p a:eq(1)')[0].previousSibling.remove(); 
       $('.entry-buddypress-content p a:eq(1)')[0].nextSibling.remove();
+      $('.entry-buddypress-content p a:eq(1)').remove();
+      $('.entry-buddypress-content p a:eq(0)').append('. ');
     }
 
     $("#topic-form-toggle").on('click', '#add', function () {

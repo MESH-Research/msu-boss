@@ -119,10 +119,6 @@ button#add {
   }
 }
 
-#buddypress div#item-nav .item-list-tabs ul li.current > a,
-#buddypress div#item-nav .item-list-tabs ul li:hover > a {
-  color: $link-color-hover;
-}
 
 #buddypress div#item-nav .item-list-tabs > ul > li.current {
   font-weight: 600;
@@ -140,11 +136,6 @@ body:not(.boxed) #buddypress div#item-nav .item-list-tabs ul {
 body:not(.boxed) #item-nav .item-list-tabs ul,
 body:not(.boxed) #item-nav .item-list-tabs .hideshow ul:before {
   background-color: $menu-panel-background-color;
-}
-
-#buddypress div#item-nav .item-list-tabs > ul > li.current,
-#buddypress div#item-nav .item-list-tabs > ul > li:not(.hideshow):hover {
-  border-color: $link-color-hover;
 }
 
 #bbpress-forums li.bbp-header,
@@ -498,4 +489,56 @@ body:not('.role-admin') .send-invitations-by-email-wrap {
     margin-right: 3px;
     font-size: 12px;
 }
+
+table.group-nav-settings {
+    width: 50% !important;
+}
+
+.group-nav-settings .title {
+    margin: 14px 0 28px 0;
+    font-size: 18px !important;
+    color: #4dcadd;
+    font-weight: 400 !important;
+}
+
+.item-list-tabs ul li span.disabled-nav {
+  background-color: #ececec;
+  color: #999;
+  font-size: inherit;
+  padding: 18px 18px;
+  display: block;
+  white-space: nowrap;
+
+      &:hover {
+        border-color: unset;
+    }
+}
+
+.group-nav-settings span {
+  display:none;
+}
+
+#group-landing-page-select span {
+  display:none;
+}
+#buddypress div#item-nav .item-list-tabs ul li a {
+  color: #217E8C;
+}
+
+#buddypress div#item-nav .item-list-tabs ul li.current > a,
+#buddypress div#item-nav .item-list-tabs ul li:hover > a {
+  color: #217E8C;
+}
+
+
+#buddypress div#item-nav .item-list-tabs > ul > li.current,
+#buddypress div#item-nav .item-list-tabs > ul > li:not(.hideshow):hover {
+  border-color: #217E8C;
+}
+
+#buddypress div#item-nav .item-list-tabs > ul > li.disabled-group-nav:hover {
+  border-bottom: none;
+}
+
+
 

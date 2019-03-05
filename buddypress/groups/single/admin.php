@@ -143,8 +143,11 @@
 <br />
 
 <hr />
+		<h4><?php _e( 'Selects Default Landing Page for Group', 'group_forum_menu' ); ?></h4>
 
-        <?php hc_custom_choose_landing_page(); ?>
+		<select name="group-landing-page-select" id="group-landing-page-select">
+
+		</select>
 <br />
 <br />
 

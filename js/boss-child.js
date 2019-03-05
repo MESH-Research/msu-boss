@@ -1,6 +1,6 @@
-(function($) {
+(function ($) {
 
-  var joinleave_group_change_handler = function() {
+  var joinleave_group_change_handler = function () {
     // if the join/leave group button was clicked and ajax call is over (no spinner),
     // refresh the page so that we see the success message & email settings
     if (
@@ -16,18 +16,20 @@
     }
   };
 
-  var getQueryVariable = function(variable) {
+  var getQueryVariable = function (variable) {
     var query = window.location.search.substring(1);
     var vars = query.split("&");
-    for (var i=0;i<vars.length;i++) {
+    for (var i = 0; i < vars.length; i++) {
       var pair = vars[i].split("=");
-      if(pair[0] == variable){return pair[1];}
+      if (pair[0] == variable) {
+        return pair[1];
+      }
     }
-    return(false);
+    return (false);
   }
 
   // https://stackoverflow.com/a/12784180
-  var getBackgroundImageSize = function(el) {
+  var getBackgroundImageSize = function (el) {
     var imageUrl = $(el).css('background-image').match(/^url\(["']?(.+?)["']?\)$/);
     var dfd = new $.Deferred();
 
@@ -40,40 +42,86 @@
       dfd.reject();
     }
 
-    return dfd.then(function() {
-      return { width: this.width, height: this.height };
+    return dfd.then(function () {
+      return {
+        width: this.width,
+        height: this.height
+      };
     });
   };
 
-  var fixCoverImageDimensions = function() {
-    getBackgroundImageSize( $('#header-cover-image')[0] )
-      .then( function( size ) {
-        if ( 1250 == size.width ) {
-          $('#header-cover-image').css({'background-size': 'auto 320px'});
+  var fixCoverImageDimensions = function () {
+    getBackgroundImageSize($('#header-cover-image')[0])
+      .then(function (size) {
+        if (1250 == size.width) {
+          $('#header-cover-image').css({
+            'background-size': 'auto 320px'
+          });
         }
-      } );
+      });
   }
 
-  $doctable = $( 'table.doctable' );
+  $doctable = $('table.doctable');
 
-  $(document).ready(function(){
 
-    $('body').on('change','select#new-folder-type',function(){
-        $select_text = $('select#new-folder-type option:selected').text();
-        $('.folder-type-selector-div .buddyboss-select .buddyboss-select-inner span').show();
-        $('.folder-type-selector-div .buddyboss-select .buddyboss-select-inner span').text($select_text);
+  $(document).ready(function () {
+
+    var url = $(location).attr('href'),
+        parts = url.split("/");
+        group_slug = parts[4];
+
+    if( url.indexOf( '/admin/group-settings/' ) != -1 ) {
+
+      var group_id = $( "input[name='group-id']" ).val();
+
+      $.ajax({
+            type: "POST",
+            url: ajaxurl,
+            data: {
+                action: 'generate_menu_options_dropdown',
+            group_slug: group_slug,
+            group_id: group_id
+            },
+            success: function (response) {
+              $('#group-landing-page-select').html(response);
+            }
+        });
+
+      $('input[type=radio][id=hide-or-show-menu]').change(function () {
+        $.ajax({
+            type: "POST",
+            url: ajaxurl,
+            data: {
+                action: 'generate_menu_options_dropdown',
+                menu_option_value: $(this).val(),
+                menu_option_slug: $(this).data("slug"),
+                group_id: group_id,
+                group_slug: group_slug
+            },
+            success: function (response) {
+              $('#group-landing-page-select').html('');
+              $('#group-landing-page-select').html(response);
+            }
+        });
+      });
+    }
+
+    $('body').on('change', 'select#new-folder-type', function () {
+      $select_text = $('select#new-folder-type option:selected').text();
+      $('.folder-type-selector-div .buddyboss-select .buddyboss-select-inner span').show();
+      $('.folder-type-selector-div .buddyboss-select .buddyboss-select-inner span').text($select_text);
     });
 
-    $('body').on('change','select#new-folder-parent',function(){
-        $select_text = $('select#new-folder-parent option:selected').text();
-        $( this ).closest('.buddyboss-select-inner').find('span').first().text($select_text);
+    $('body').on('change', 'select#new-folder-parent', function () {
+      $select_text = $('select#new-folder-parent option:selected').text();
+      $(this).closest('.buddyboss-select-inner').find('span').first().text($select_text);
     });
 
     /*
      * Expand folders to show contents on click.
      * Contents are fetched via an AJAX request.
      */
-    $( '.doctable' ).on( 'click', '.orderby', function( e ) {
+    $('.doctable').on('click', '.orderby', function (e) {
       e.preventDefault();
 
 
@@ -82,97 +130,125 @@
       var orderby = classNames[1];
       var order = classNames[3];
 
-      switch(order) {
+      switch (order) {
         case 'asc':
-           order = 'DESC';
-           break;
+          order = 'DESC';
+          break;
         case 'desc':
-           order = 'ASC';
-           break;
-          }
+          order = 'ASC';
+          break;
+      }
 
-      if ( 'modified' == orderby || 'date' == orderby ) {
+      if ('modified' == orderby || 'date' == orderby) {
         $order = 'DESC';
       } else {
         $order = 'ASC';
       }
 
-      var folder_id = $( this ).closest('.toggleable').find('.toggle-folder').first().data('folder-id');
+      var folder_id = $(this).closest('.toggleable').find('.toggle-folder').first().data('folder-id');
 
-      var container = $( this ).closest( '.toggleable' ).find( '.toggle-content.folder-loop' ).first();
+      var container = $(this).closest('.toggleable').find('.toggle-content.folder-loop').first();
 
       // Make the AJAX request and populate the list.
 
-      $.ajax( {
+      $.ajax({
         url: ajaxurl,
         type: 'GET',
         data: {
           folder: folder_id,
-          group_id: $( '#directory-group-id' ).val(),
-          user_id: $( '#directory-user-id' ).val(),
+          group_id: $('#directory-group-id').val(),
+          user_id: $('#directory-user-id').val(),
           order: order,
           orderby: orderby,
           action: 'bp_docs_get_folder_content',
         },
-        success: function( response ) {
-          $( container ).html( '' );
-          $( container ).html( response );
-          $( '.folder-row-name, .folder-meta-info-statement' ).attr( 'colspan', 10 );
+        success: function (response) {
+          $(container).html('');
+          $(container).html(response);
+          $('.folder-row-name, .folder-meta-info-statement').attr('colspan', 10);
         }
 
-      } );
+      });
 
 
-    } );
+    });
 
 
     var searchQuery = getQueryVariable('s');
     var searchInput = $('#members_search');
 
-    if ( typeof $.fn.areYouSure === "function" ) {
+    if (typeof $.fn.areYouSure === "function") {
       $('form#settings-form').areYouSure();
     }
 
+    function society() {
+      let host = window.location.host.toString().toLowerCase();
+      if (host.includes('aseees.')) {
+        return 'ASEEES COMMONS';
+      };
+      if (host.includes('mla.')) {
+        return 'MLA COMMONS';
+      };
+      if (host.includes('caa.')) {
+        return 'CAA COMMONS';
+      };
+      if (host.includes('ajs.')) {
+        return 'AJS COMMONS';
+      };
+      if (host.includes('up.')) {
+        return 'AP COMMONS';
+      };
+      return 'HUMANITIES COMMONS';
+    };
+
     $(".no-docs").hide();
+    $("fieldset[class='create-site']").remove();
+    $("label[for='blog_public_off']").prepend("<br/>");
+    $("label[for='blog_public_off']").parent().append("<br/>");
+    $("label[for='blog-private-1']").html('<input id="blog-private-1" type="radio" name="blog_public" value="-1"><strong>Visible only to registered users of ' + society() + '</strong>');
+    $("label[for='blog-private-2']").html('<input id="blog-private-2" type="radio" name="blog_public" value="-2"><strong>Visible only to registered users of your site</strong>');
+    $("label[for='blog-private-3']").html('<input id="blog-private-3" type="radio" name="blog_public" value="-3"><strong>Visible only to administrators of your site</strong>');
 
-    $("label[for='blog_public_on'] strong").text('Allow search engines to index this site, and allow the site to appear in public listings around this network.');
-
-    $("label[for='blog_public_off'] strong").text("Discourage search engines from indexing this site.");
-
-    $("label[for='blog_public_off']").append("<br><br>Note: Neither of these options blocks access to your site — it is up to search engines to honor your request.");
-
-    if ( $('.create-blog .entry-buddypress-content p a:eq(1)').length ) {
+    if ($('.create-blog .entry-buddypress-content p a:eq(1)').length) {
+      console.log($('.entry-buddypress-content p a:eq(0)'));
+      $('.entry-buddypress-content p a:eq(0)').parent().prepend('Visit ');
+      $('.entry-buddypress-content p a:eq(1)')[0].previousSibling.remove();
       $('.entry-buddypress-content p a:eq(1)')[0].nextSibling.remove();
+      $('.entry-buddypress-content p a:eq(1)').remove();
+      $('.entry-buddypress-content p a:eq(0)').append('. ');
     }
 
-    $("#topic-form-toggle").on('click', '#add', function() {
+    $("#topic-form-toggle").on('click', '#add', function () {
       $(".topic-form").slideToggle("slow");
 
       $('html,body').animate({
-            scrollTop: $(".topic-form").offset().top},
-            'slow');
+          scrollTop: $(".topic-form").offset().top
+        },
+        'slow');
     });
 
     var previousDate;
 
-    $("#eo-start-date, #eo-end-date").focus( function() {
-      previousDate = $( this ).val(); ;
+
+
+    $("#eo-start-date, #eo-end-date").focus(function () {
+      previousDate = $(this).val();;
     });
 
-    $("#eo-start-date, #eo-end-date").blur( function() {
-        var newDate = $( this ).val();
-        if (!moment( newDate, 'dd-mm-yyyy', true ).isValid() ) {
-            $( this ).val( previousDate );
-        }
+    $("#eo-start-date, #eo-end-date").blur(function () {
+      var newDate = $(this).val();
+      if (!moment(newDate, 'dd-mm-yyyy', true).isValid()) {
+        $(this).val(previousDate);
+      }
     });
 
     // preserve url searches by copying them to the search box if necessary
     if (searchQuery.length > 0 && searchInput.val() === '') {
-      searchInput.val(searchQuery.replace(/\+/g," "));
+      searchInput.val(searchQuery.replace(/\+/g, " "));
     }
 
-    if ( $( '#send-to-input').get( 0 ) ) {
-      $('#send-to-input').bp_mentions( bp.mentions.users );
+    if ($('#send-to-input').get(0)) {
+      $('#send-to-input').bp_mentions(bp.mentions.users);
     }
 
     // we need live() to affect pages of groups loaded via ajax.
@@ -187,16 +263,16 @@
     // disable this since it breaks in safari and isn't really useful anyway
     $.fn.jRMenuMore = function () {}
 
-    $('form#hc-terms-acceptance-form input[type=submit][name=hc_accept_terms_continue]').on('click', function(){
-            if ( $('form#hc-terms-acceptance-form input[type=checkbox][name=hc_accept_terms]').is(':checked') ) {
-                    $('#hc-terms-acceptance-form').submit();
-            } else {
-                    alert('Please agree to the terms by checking the box next to "I agree".');
-            }
+    $('form#hc-terms-acceptance-form input[type=submit][name=hc_accept_terms_continue]').on('click', function () {
+      if ($('form#hc-terms-acceptance-form input[type=checkbox][name=hc_accept_terms]').is(':checked')) {
+        $('#hc-terms-acceptance-form').submit();
+      } else {
+        alert('Please agree to the terms by checking the box next to "I agree".');
+      }
     });
 
     //this handles the ajax for settings-general.php in single member view
-    $('.settings_general_submit input').on('click', function( event ) {
+    $('.settings_general_submit input').on('click', function (event) {
 
       $.ajax({
         method: 'POST',
@@ -207,30 +283,35 @@
           primary_email: $('.email_selection input[type="radio"]:checked').val()
         },
         cache: false
-      }).done(function(data) {
+      }).done(function (data) {
 
         //store all radio buttons in this var to loop through later
         var radio = $('.email_selection input[type="radio"]');
 
         //loop through each radio button and whichever one was saved is the one that will be checked.
-        radio.each(function( i, v ) {
+        radio.each(function (i, v) {
 
-        //in the context of the current loop
-        if( $(this).val() == data.primary_email ) {
+          //in the context of the current loop
+          if ($(this).val() == data.primary_email) {
 
-          $(this).prop( 'checked', true );
-        }
+            $(this).prop('checked', true);
+          }
 
         });
 
-        $('html, body').animate({ scrollTop: 0 }, 'fast');
+        $('html, body').animate({
+          scrollTop: 0
+        }, 'fast');
 
         //ajax message to assert user that the data has been infact, updated
-          $('#item-header-cover').prepend(
-            $('<div />', { id: "message", class: "bp-template-notice updated" }).append(
-                $('<p />').text('Changed saved.')
-              )
-            );
+        $('#item-header-cover').prepend(
+          $('<div />', {
+            id: "message",
+            class: "bp-template-notice updated"
+          }).append(
+            $('<p />').text('Changed saved.')
+          )
+        );
 
       });
 
@@ -242,15 +323,15 @@
     // admins can add these classes in the widget options, but only to
     // the content of widgets which still leaves an empty box with a
     // border unless we also add the class to the container.
-    $( '.hide-if-logged-in.panel-widget-style' ).parent().addClass( 'hide-if-logged-in' );
-    $( '.hide-if-logged-out.panel-widget-style' ).parent().addClass( 'hide-if-logged-out' );
+    $('.hide-if-logged-in.panel-widget-style').parent().addClass('hide-if-logged-in');
+    $('.hide-if-logged-out.panel-widget-style').parent().addClass('hide-if-logged-out');
 
     // handle usernames with and without @ in message compose form
-    $( '#send_message_form' ).on( 'submit', function( e ) {
-      $( '#send-to-input' ).val( $( '#send-to-input' ).val().replace( '@', '' ) );
-    } );
+    $('#send_message_form').on('submit', function (e) {
+      $('#send-to-input').val($('#send-to-input').val().replace('@', ''));
+    });
 
-    if ( $( '#header-cover-image' ).length ) {
+    if ($('#header-cover-image').length) {
       fixCoverImageDimensions();
     }
   });

@@ -58,6 +58,46 @@
 
   $(document).ready(function(){
 
+     var url = $(location).attr('href'),
+        parts = url.split("/");
+        group_slug = parts[4];
+
+    if( url.indexOf( '/admin/group-settings/' ) != -1 ) {
+
+      var group_id = $( "input[name='group-id']" ).val();
+
+      $.ajax({
+            type: "POST",
+            url: ajaxurl,
+            data: {
+                action: 'generate_menu_options_dropdown',
+            group_slug: group_slug,
+            group_id: group_id
+            },
+            success: function (response) {
+              $('#group-landing-page-select').html(response);
+            }
+        });
+
+      $('input[type=radio][id=hide-or-show-menu]').change(function () {
+        $.ajax({
+            type: "POST",
+            url: ajaxurl,
+            data: {
+                action: 'generate_menu_options_dropdown',
+                menu_option_value: $(this).val(),
+                menu_option_slug: $(this).data("slug"),
+                group_id: group_id,
+                group_slug: group_slug
+            },
+            success: function (response) {
+              $('#group-landing-page-select').html('');
+              $('#group-landing-page-select').html(response);
+            }
+        });
+      });
+    }
+
     $('body').on('change','select#new-folder-type',function(){
         $select_text = $('select#new-folder-type option:selected').text();
         $('.folder-type-selector-div .buddyboss-select .buddyboss-select-inner span').show();

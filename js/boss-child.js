@@ -62,6 +62,11 @@
         parts = url.split("/");
         group_slug = parts[4];
 
+    if( url.indexOf( '/documents/' ) != -1 ) {
+      $('.admin-links').append('<br><br><input name="group-files-minor-edit" type="checkbox" value="on" /> Check to prevent notifications to group members.');
+    }
+
+
     if( url.indexOf( '/admin/group-settings/' ) != -1 ) {
 
       var group_id = $( "input[name='group-id']" ).val();

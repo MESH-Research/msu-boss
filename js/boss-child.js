@@ -63,9 +63,15 @@
         group_slug = parts[4];
 
     if( url.indexOf( '/documents/' ) != -1 ) {
-      $('.admin-links').append('<br><br><input name="group-files-minor-edit" type="checkbox" value="on" /> Check to prevent notifications to group members.');
-    }
+      $('#group-files-minor-edit').click(function() {
+        if ($(this).is(':checked')) {
+            var current = $(this).data("doc-id");
 
+            var href = $('a[data-doc-id="' + current + '"]');
+            href.attr("href", href.attr("href") + "&action=delete" );
+        }
+      });
+    }
 
     if( url.indexOf( '/admin/group-settings/' ) != -1 ) {
 

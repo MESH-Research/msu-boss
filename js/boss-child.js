@@ -63,13 +63,17 @@
         group_slug = parts[4];
 
     if( url.indexOf( '/documents/' ) != -1 ) {
-      $('#group-files-minor-edit').click(function() {
-        if ($(this).is(':checked')) {
-            var current = $(this).data("doc-id");
+      $('.group-files-minor-edit').click(function() {
 
-            var href = $('a[data-doc-id="' + current + '"]');
+        var current = $(this).data("doc-id");
+        var href = $('a[data-doc-id="' + current + '"]');
+
+        if ($(this).is(':checked')) {
             href.attr("href", href.attr("href") + "&action=delete" );
+        } else {
+            href.attr("href", href.attr("href").replace("&action=delete",""));
         }
+
       });
     }
 

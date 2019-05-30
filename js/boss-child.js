@@ -190,11 +190,41 @@
 
     $(".no-docs").hide();
 
-    $("label[for='blog_public_on'] strong").text('Allow search engines to index this site, and allow the site to appear in public listings around this network.');
+   if( url.indexOf( '/sites/create/' ) != -1 ) {
 
-    $("label[for='blog_public_off'] strong").text("Discourage search engines from indexing this site.");
+        $(".create-site .label").html('<h3>Visibility Settings</h3>');
 
-    $("label[for='blog_public_off']").append("<br><br>Note: Neither of these options blocks access to your site — it is up to search engines to honor your request.");
+        $("label[for='blog_public_on'] strong").remove();
+
+        $("label[for='blog_public_off'] strong").remove();
+
+        $("label[for='blog_public_on']").contents().last()[0].textContent = 'Public and allow search engines to index this site. Note: it is up to search engines to honor your request. The site will appear in public listings around Humanities Commons.';
+
+        $("label[for='blog_public_off']").contents().last()[0].textContent = "Public but discourage search engines from index this site. Note: this option does not block access to your site — it is up to search engines to honor your request. The site will appear in public listings around Humanities Commons.";
+
+
+    }
+
+    if( url.indexOf( '/sites/create/' ) != -1 || url.indexOf( '/create/step/group-blog/' != -1 ) ) {
+
+        var society_id, matches = document.body.className.match(/(^|\s)society-(\w+)(\s|$)/);
+
+        if (matches) {
+              // found the society_id
+              society_id = matches[2];
+
+            if(society_id=='hc') {
+              $("label[for='blog-private-1']").contents().last()[0].textContent = ' Visible only to registered users of '+society_id.toUpperCase()+'.';
+
+             } else {
+               $("label[for='blog-private-1']").contents().last()[0].textContent = 'Visible only to registered users of '+society_id.toUpperCase()+' Commons';
+             }
+
+             $("label[for='blog-private-2']").contents().last()[0].textContent = 'Visible only to registered users of your site.';
+
+             $("label[for='blog-private-3']").contents().last()[0].textContent = 'Visible only to administrators of your site.';
+        }
+    }
 
     if ( $('.create-blog .entry-buddypress-content p a:eq(1)').length ) {
       $('.entry-buddypress-content p a:eq(1)')[0].nextSibling.remove();

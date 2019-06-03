@@ -219,7 +219,7 @@
           ' public listings around Humanities Commons.</td>');
     }
 
-    if( url.indexOf( '/sites/create/' ) != -1 || url.indexOf( '/create/step/group-blog/') != -1  ) {
+    if( url.indexOf( '/sites/create/' ) != -1 || url.indexOf( '/create/step/group-blog/') != -1 || url.indexOf('/admin/group-blog/') != -1 ){
 
         var society_id, matches = document.body.className.match(/(^|\s)society-(\w+)(\s|$)/);
 

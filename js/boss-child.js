@@ -205,6 +205,20 @@
 
     }
 
+    if ( url.indexOf( '/create/step/group-blog/') != -1 ||  url.indexOf( '/groups/create-a-site/admin/group-blog/') ) {
+
+       $('#blog-details-fields').after('<td><label class="checkbox" for="blog_public_on">' +
+          '<input type="radio" id="blog_public_on" name="blog_public" value="1" checked="checked" class="styled">' +
+          'Public and allow search engines to index this site. Note: it is up to search' +
+          ' engines to honor your request. The site will appear in public listings around Humanities Commons.' +
+       '</label><br/>' +
+       '<label class="checkbox" for="blog_public_off">' +
+          '<input type="radio" id="blog_public_off" name="blog_public" value="0" class="styled">' +
+          'Public but discourage search engines from index this site. Note: this option' +
+          ' does not block access to your site — it is up to search engines to honor your request. The site will appear in' +
+          ' public listings around Humanities Commons.</td>');
+    }
+
     if( url.indexOf( '/sites/create/' ) != -1 || url.indexOf( '/create/step/group-blog/') != -1  ) {
 
         var society_id, matches = document.body.className.match(/(^|\s)society-(\w+)(\s|$)/);
@@ -214,7 +228,7 @@
               society_id = matches[2];
 
             if(society_id=='hc') {
-              $("label[for='blog-private-1']").contents().last()[0].textContent = ' Visible only to registered users of '+society_id.toUpperCase()+'.';
+              $("label[for='blog-private-1']").contents().last()[0].textContent = 'Visible only to registered users of '+society_id.toUpperCase()+'.';
 
              } else {
                $("label[for='blog-private-1']").contents().last()[0].textContent = 'Visible only to registered users of '+society_id.toUpperCase()+' Commons';

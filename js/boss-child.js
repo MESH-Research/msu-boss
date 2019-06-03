@@ -205,7 +205,7 @@
 
     }
 
-    if ( url.indexOf( '/create/step/group-blog/') != -1 ||  url.indexOf( '/groups/create-a-site/admin/group-blog/') ) {
+    if ( url.indexOf('/create/step/group-blog/') != -1 ||  url.indexOf('/groups/create-a-site/admin/group-blog/') != -1 || url.indexOf('/admin/group-blog/')  != -1  ) {
 
        $('#blog-details-fields').after('<td><label class="checkbox" for="blog_public_on">' +
           '<input type="radio" id="blog_public_on" name="blog_public" value="1" checked="checked" class="styled">' +

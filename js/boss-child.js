@@ -58,6 +58,29 @@
 
   $(document).ready(function(){
 
+    if ( $( ".cv p" ).length ) {
+      $('.cv #bp-attachment-xprofile-file ').after("<span><button id='delete-upload'>Delete</button></span>");
+
+      $( "#delete-upload" ).on( 'click',  function( e ) {
+          e.preventDefault();
+
+         $.ajax({
+            method: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'hc_custom_delete_file',
+                file_to_delete: $('.cv p').find('a:first').attr('href'),
+                field_id_to_delete: $("input[name=bpaxft_field_id]").val()
+          },
+          }).done(function(data) {
+
+          });
+
+          $('.cv p').remove();
+        });
+    }
+
+
      var url = $(location).attr('href'),
         parts = url.split("/");
         group_slug = parts[4];

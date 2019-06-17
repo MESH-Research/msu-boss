@@ -70,7 +70,8 @@
             data: {
                 action: 'hc_custom_delete_file',
                 file_to_delete: $('.cv p').find('a:first').attr('href'),
-                field_id_to_delete: $("input[name=bpaxft_field_id]").val()
+                field_id_to_delete: $("input[name=bpaxft_field_id]").val(),
+		nonce: settings_general_req.nonce
           },
           }).done(function(data) {
 

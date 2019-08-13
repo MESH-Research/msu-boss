@@ -95,6 +95,23 @@ do_action( 'bp_before_member_settings_template' ); ?>
 	}
 
 } ?>
+<?php /* if ( is_user_logged_in() && bp_loggedin_user_id() === bp_displayed_user_id() ) {
+        $server_url = constant( 'SATOSA_SERVER_URL' ) . '/Saml2/unsolicited';
+        $provider_id = urlencode( constant( 'REGISTRY_SERVER_URL' ) . '/shibboleth' );
+        $society_account_link_constant = strtoupper( Humanities_Commons::$society_id ) . '_ACCOUNT_LINK_URL';
+        $target_url = urlencode( constant( $society_account_link_constant ) );
+        $discovery_url = urlencode( constant( 'REGISTRY_SERVER_URL' ) . '/discovery_service_registry_only/index.php' );
+        $formatted_provider = false;
+        $entity_id = urlencode( Humanities_Commons::hcommons_get_identity_provider( $formatted_provider ) );
+        $society_name = ( 'hc' === Humanities_Commons::$society_id ) ? 'Humanities Commons' : strtoupper( Humanities_Commons::$society_id ) . ' Commons';
+        if ( ! strpos( constant( $society_account_link_constant ), 'downtime' ) ) {
+                echo sprintf( '<p><a href="%s?providerId=%s&target=%s&authId=%s">Link another log-in method</a> to your %s Account</p>', $server_url, $provider_id,
+                $target_url, $entity_id, $society_name );
+        } else {
+                echo '<p>Linking other log-in methods is currently unavailable.</p>';
+        }
+
+} */ ?>
 <br>
 <?php if ( 1==2 && is_user_logged_in() && bp_loggedin_user_id() === bp_displayed_user_id() ) {
 	$current_orcid = hcommons_get_session_orcid();

@@ -80,7 +80,7 @@ do_action( 'bp_before_member_settings_template' ); ?>
 	} ?>
 </ul>
 <br>
-<?php /* if ( is_user_logged_in() && bp_loggedin_user_id() === bp_displayed_user_id() ) {
+<?php if ( is_user_logged_in() && bp_loggedin_user_id() === bp_displayed_user_id() ) {
 	$registry_url = constant( 'REGISTRY_SERVER_URL' ) . '/Shibboleth.sso/Login?SAMLDS=1';
 	$discovery_url = urlencode( constant( 'REGISTRY_SERVER_URL' ) . '/discovery_service_registry_only/index.php' );
 	$society_account_link_constant = strtoupper( Humanities_Commons::$society_id ) . '_ACCOUNT_LINK_URL';
@@ -94,8 +94,8 @@ do_action( 'bp_before_member_settings_template' ); ?>
 		echo '<p>Linking other log-in methods is currently unavailable.</p>';
 	}
 
-} */ ?>
-<?php if ( is_user_logged_in() && bp_loggedin_user_id() === bp_displayed_user_id() ) {
+} ?>
+<?php /* if ( is_user_logged_in() && bp_loggedin_user_id() === bp_displayed_user_id() ) {
         $server_url = constant( 'SATOSA_SERVER_URL' ) . '/Saml2/unsolicited';
         $provider_id = urlencode( constant( 'REGISTRY_SERVER_URL' ) . '/shibboleth' );
         $society_account_link_constant = strtoupper( Humanities_Commons::$society_id ) . '_ACCOUNT_LINK_URL';
@@ -111,7 +111,7 @@ do_action( 'bp_before_member_settings_template' ); ?>
                 echo '<p>Linking other log-in methods is currently unavailable.</p>';
         }
 
-} ?>
+} */ ?>
 <br>
 <?php if ( 1==2 && is_user_logged_in() && bp_loggedin_user_id() === bp_displayed_user_id() ) {
 	$current_orcid = hcommons_get_session_orcid();

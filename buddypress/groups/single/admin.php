@@ -134,7 +134,21 @@
 				<strong><?php _e( 'Sort by Last Edited', 'boss' ); ?></strong>
 			</label>
 	 	</div>
- <?php endif; ?>
+ 
+		<p><?php  _e('When users create docs, by default, options will be:',  'boss' ); ?></p>
+		<div class="radio">
+		<label>
+                                <input type="radio" name="group-docs-toggle" value="toggle-open"<?php hc_custom_bp_group_docs_toggle_default_setting( 'toggle-open' ); ?> />
+                                <strong><?php _e( 'Toggled Open', 'boss' ); ?></strong>
+                        </label>
+
+                        <label>
+                                <input type="radio" name="group-docs-toggle" value="toggle-closed"<?php hc_custom_bp_group_docs_toggle_default_setting( 'toggle-closed' ); ?> />
+                                <strong><?php _e( 'Toggled Closed', 'boss' ); ?></strong>
+                        </label>
+		</div>
+
+	<?php endif; ?>
 
 <hr />
 

@@ -146,8 +146,8 @@ body:not(.boxed) #item-nav .item-list-tabs .hideshow ul:before {
 
 #bbpress-forums {
   h2,h3,h4,h5,h6 {
-   display:inline;
-   }
+   clear:none;
+  }
 
   .post-num {
     border-width: 1px;

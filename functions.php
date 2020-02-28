@@ -51,7 +51,7 @@ function boss_child_theme_enqueue_style() {
 		file_exists( get_stylesheet_directory() . '/css/' . Humanities_Commons::$society_id . '.css' )
 	) {
                 $ctime =  filemtime( get_theme_file_path() . '/css/' . Humanities_Commons::$society_id . '.css' );
-		wp_enqueue_style( 'boss-child-custom', get_stylesheet_directory_uri() . '/css/' . Humanities_Commons::$society_id . '.css', [], $ctime );
+		wp_enqueue_style( 'msu-boss-custom', get_stylesheet_directory_uri() . '/css/' . Humanities_Commons::$society_id . '.css', [], $ctime );
 	}
 
 }
@@ -63,8 +63,8 @@ add_action( 'wp_enqueue_scripts', 'boss_child_theme_enqueue_style', 200 );
  * Enqueues scripts for child theme front-end.
  */
 function boss_child_theme_enqueue_script() {
-        $jtime = filemtime( get_theme_file_path() . '/js/boss-child.js' );
-	wp_enqueue_script( 'boss-child-custom', get_stylesheet_directory_uri() . '/js/boss-child.js', [], $jtime );
+        $jtime = filemtime( get_theme_file_path() . '/js/msu-boss.js' );
+	wp_enqueue_script( 'msu-boss-custom', get_stylesheet_directory_uri() . '/js/msu-boss.js', [], $jtime );
 }
 // priority 200 to ensure this loads after redux which uses 150
 add_action( 'wp_enqueue_scripts', 'boss_child_theme_enqueue_script' );
@@ -115,7 +115,7 @@ add_action( 'admin_bar_menu', 'boss_child_change_profile_edit_to_view_in_adminba
 
 
 /**
- * Handles ajax for the boss-child theme
+ * Handles ajax for the msu-boss theme
  * @return void
  */
 function boss_child_theme_ajax() {
@@ -123,7 +123,7 @@ function boss_child_theme_ajax() {
 	//this is for settings-general ajax
 	$user = wp_get_current_user();
 	$nonce = wp_create_nonce('settings_general_nonce');
-	wp_localize_script( 'boss-child-custom', 'settings_general_req', [ 'user' => $user, 'nonce' => $nonce ], ['jquery'] );
+	wp_localize_script( 'msu-boss-custom', 'settings_general_req', [ 'user' => $user, 'nonce' => $nonce ], ['jquery'] );
 
 }
 

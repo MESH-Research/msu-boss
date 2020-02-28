@@ -1,5 +1,5 @@
 {
-  "name": "boss-child",
+  "name": "msu-boss",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mlaa/boss-child.git"
+    "url": "git+https://github.com/mlaa/msu-boss.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mlaa/boss-child/issues"
+    "url": "https://github.com/mlaa/msu-boss/issues"
   },
-  "homepage": "https://github.com/mlaa/boss-child#readme",
+  "homepage": "https://github.com/mlaa/msu-boss#readme",
   "devDependencies": {
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0"

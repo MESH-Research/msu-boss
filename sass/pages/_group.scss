@@ -145,12 +145,8 @@ body:not(.boxed) #item-nav .item-list-tabs .hideshow ul:before {
 }
 
 #bbpress-forums {
-  h2 {
-	display:inline;
-   }
-  h3 {
-    //display: none; 
-    // these titles are invalid anyway due to bad data
+  h2,h3,h4,h5,h6 {
+   clear:none;
   }
 
   .post-num {

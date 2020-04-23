@@ -232,7 +232,7 @@ a.sidebar-btn.fa:hover {
 }
 
 #titlebar-search #s {
-  border: 1px solid #e1e1e1;
+  border: 1px solid #575757;
   border-radius: 4px;
   float: right;
   height: 2em;
@@ -261,3 +261,15 @@ body #titlebar-search {
   box-shadow: none;
 }
 
+
+::-webkit-input-placeholder { /* Edge */
+  color: #575757;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #575757;
+}
+
+::placeholder {
+  color: #575757;
+}

@@ -149,3 +149,22 @@ div.bbp-template-notice {
 }
 
 
+footer#colophon * {
+    color: #575757;
+}
+
+.footer-credits a, #footer-links a {
+    color: #575757 !important;
+}
+
+#primary .item-list li .item-meta span:not(.count) {
+  color: #575757;
+}
+
+#buddypress #activity-stream .activity-meta .bp-secondary-action:before {
+  color: #575757 !important;
+}
+
+.fa-mail-reply:before, .fa-reply:before {
+  color: #575757 !important;
+}

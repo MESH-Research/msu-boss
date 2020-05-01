@@ -45,7 +45,7 @@ get_header(); ?>
 		$identity_provider = Humanities_Commons::hcommons_get_identity_provider();
 		echo '<h1 class="entry-title">Unknown Login</h1>';
 		echo 'You have chosen a login method (' . $identity_provider . ') that is not linked to any account in Humanities Commons.';
-		echo '<p /><a href="https://hcommons-dev.org/remind-me/" title="Not sure what your username is? Search for yourself on the Commons!">Forgotten how you logged in?</a>';
+		echo '<p /><a href="https://hcommons.org/remind-me/" title="Not sure what your username is? Search for yourself on the Commons!">Forgotten how you logged in?</a>';
 
 
 	} ?>

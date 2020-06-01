@@ -24,7 +24,7 @@
 
 </div>
 <div class="panel-panel grid-12 alpha omega msu_footer_wrapper" role="contentinfo">
-<div class="panel-panel grid-3 alpha msu_footer_wordmark"><a href="http://www.msu.edu" rel="nofollow"><img alt="Michigan State University Wordmark" src="https://msucommons-dev.org/app/uploads/sites/1001437/2020/03/msu-wordmark-green.png" /></a></div>
+<div class="panel-panel grid-3 alpha msu_footer_wordmark"><a href="http://www.msu.edu" rel="nofollow"><img alt="Michigan State University Wordmark" src="/app/uploads/sites/1001437/2020/05/msu-wordmark-green.png" /></a></div>
 
 <div class="panel-panel grid-9 omega" id="footer_lists">
 <div class="panel-panel grid-9 alpha omega">

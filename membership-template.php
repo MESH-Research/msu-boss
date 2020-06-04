@@ -21,7 +21,7 @@ get_header(); ?>
 		<div class="entry-content">
 
 	<?php the_content();
-		echo '<p /><a href="' . Humanities_Commons::hcommons_register_url( '' ) . '" title="Register now">Register now</a>';
+		echo '<p /><a class="btn" href="' . Humanities_Commons::hcommons_register_url( '' ) . '" title="Register now">Register now</a>';
 	 ?>
 		</div><!-- .entry-content -->
 

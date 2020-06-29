@@ -86,6 +86,10 @@
         parts = url.split("/");
         group_slug = parts[4];
 
+    if( url.indexOf( '/groups/' ) != -1 ) {
+      document.body.className = document.body.className.replace("activity","home");
+    }
+
     if( url.indexOf( '/documents/' ) != -1 ) {
       $('.group-files-minor-edit').click(function() {
 
